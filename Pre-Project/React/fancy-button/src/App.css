@@ -1,0 +1,43 @@
+
+
+
+.App {
+
+
+  display: flex;
+  justify-content: center;
+}
+
+h1{
+  color: darkgreen;
+  padding-left: 100px;
+  padding-top: 75px;
+}
+
+.leftSide{
+  padding-top: 50px;
+}
+
+.btn-group{
+  align-content: center;
+  padding-bottom: 10px;
+
+}
+
+.textBox{
+  width: 200px;
+
+}
+
+.inputBox{
+  display: flex;
+  justify-content: center;
+}
+
+
+
+
+
+
+
+
