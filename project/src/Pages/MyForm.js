@@ -12,10 +12,6 @@ export default function Form({ state }) {
                 <p>Course Hours : {state.courseHours}</p>
                 <p>Course credits: {state.courseCredits}</p>
                 <p>Academic Reference: {state.reference}</p>
-
-                <h1>
-                    {state}
-                </h1>
             </div>
         </div>
        

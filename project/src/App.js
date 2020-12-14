@@ -1,7 +1,6 @@
 import React, {useState, useEffect} from "react";
 import 'bootstrap/dist/css/bootstrap.css';
 import useSetState from './useSetState';
-import { Route, BrowserRouter as Router } from "react-router-dom";
 import MyForm from "./Pages/MyForm";
 import CreateForm from "./Pages/CreateForm"
 import './App.css';
@@ -43,16 +42,7 @@ function App() {
         setState={setState}
         setIsSubmitted={setIsSubmitted}
       />}
-    </div>
-    // <Router>
-
-    //(boolean) ? (if true) : (if false)
-      
-    //   <Route path="/form" exact component={MyForm(state, setState)} />
-    //   <Route path="/" exact component={CreateForm(state)} />
-    // </Router>
-
-    
+    </div>  
   );
 }
 

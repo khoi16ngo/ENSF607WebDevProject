@@ -8,8 +8,6 @@ import './CreateForm.css';
 
 export default function CreateForm({ state, setState, setIsSubmitted }) {
 
-
-    const [courseID, setCourseID] = useState("")
     
 
     return (
@@ -53,12 +51,12 @@ export default function CreateForm({ state, setState, setIsSubmitted }) {
                             }
                         />
                 </Form.Group>
-
+               
                 <Form.Group as={Row} controlId="formHorizontalHours">
                     <Form.Label column sm={2}>
-                    Course Hours
+                    Course Hours:
                     </Form.Label>
-                    <Col sm={10}>
+                    <Col sm={10}  className='horizontalInput'>
                         <Form.Control
                             type="text"
                             placeholder="Enter course hours"
@@ -72,12 +70,15 @@ export default function CreateForm({ state, setState, setIsSubmitted }) {
                     </Col>
                 </Form.Group>
 
-                <Form.Group as={Row} controlId="formHorizontalCredit">
+                <Form.Group as={Row} controlId="formHorizontalCredit" >
                     <Form.Label column sm={2}>
                     Academic Credit:
-                    </Form.Label>
-                    <Col sm={10}>
-                        <Form.Control type="text" placeholder="Enter course credits"
+                    </Form.Label >
+                    <Col sm={10} className='horizontalInput'>
+                        <Form.Control 
+                            type="text"
+                            placeholder="Enter course credits"
+                            
                             value={state.courseCredits || ''}
                             onChange={(e) => {
                                 e.preventDefault();
@@ -92,7 +93,7 @@ export default function CreateForm({ state, setState, setIsSubmitted }) {
                     <Form.Label column sm={2}>
                     Academic Reference:
                     </Form.Label>
-                    <Col sm={10}>
+                    <Col sm={10} className='horizontalInput'>
                         <Form.Control type="text" placeholder="Enter academic reference"
                             value={state.reference || ''}
                             onChange={(e) => {
@@ -108,11 +109,9 @@ export default function CreateForm({ state, setState, setIsSubmitted }) {
                 </Form>
             </div>
             </div>
-            <div>
-            <h2>
-                {/* 2. Learning Outcomes */}
-            </h2>
+            <div className='submitButton'>
              <Button
+               
                 type="button"
                 variant="primary"
                 onClick={(e) => {

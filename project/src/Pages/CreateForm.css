@@ -6,9 +6,20 @@
 .title{
     display: flex;
     justify-content: center;
+    padding-bottom: 30px;
 }
 
 .information{
     display: flex;
     justify-content: center;
+}
+
+.horizontalInput{
+    padding-left: 30px;
+}
+
+.submitButton{
+     display: flex;
+     justify-content: center;
+     
 }
