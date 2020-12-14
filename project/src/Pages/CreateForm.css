@@ -1,0 +1,14 @@
+.mainPage{
+    display: flex;
+    justify-content: center;
+}
+
+.title{
+    display: flex;
+    justify-content: center;
+}
+
+.information{
+    display: flex;
+    justify-content: center;
+}

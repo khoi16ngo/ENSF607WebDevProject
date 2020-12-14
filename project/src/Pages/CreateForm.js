@@ -2,6 +2,7 @@ import { React, useState } from "react";
 import 'bootstrap/dist/css/bootstrap.css';
 import { Button, Form, Col, Row } from 'react-bootstrap';
 import useSetState from '../useSetState';
+import './CreateForm.css';
 
 // import { BrowserRouter, Router } from "react-router-dom";
 
@@ -13,10 +14,10 @@ export default function CreateForm({ state, setState, setIsSubmitted }) {
 
     return (
          <div> 
-            <h1>Course Outline</h1>
+            <h1 className='title'>Course Outline</h1>
             <div>
-            <h2>1. Calendar Information</h2>
-            <div>
+            <h2 className= 'information'>1. Calendar Information</h2>
+            <div className= 'mainPage'>
                 <Form>
                 <Form.Group>
                     <Form.Label>Course ID</Form.Label>
