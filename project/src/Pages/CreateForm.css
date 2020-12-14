@@ -1,3 +1,9 @@
+.mainForm{
+    background-color:rgb(204, 204, 204);
+}
+
+
+
 .mainPage{
     display: flex;
     justify-content: center;

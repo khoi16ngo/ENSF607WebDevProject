@@ -11,7 +11,7 @@ export default function CreateForm({ state, setState, setIsSubmitted }) {
     
 
     return (
-         <div> 
+         <div className='mainForm'> 
             <h1 className='title'>Course Outline</h1>
             <div>
             <h2 className= 'information'>1. Calendar Information</h2>
@@ -119,7 +119,7 @@ export default function CreateForm({ state, setState, setIsSubmitted }) {
                     setIsSubmitted(true)
                 // window.location.href='http://localhost:3001/form';
                 }}
-            > Create Form</Button>
+            > Create Course Outline</Button>
             </div>
         </div>
 
