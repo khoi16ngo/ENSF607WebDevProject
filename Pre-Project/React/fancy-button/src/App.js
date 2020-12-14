@@ -24,7 +24,7 @@ function App() {
 
   const handleKeyDown = (e) => {
     if(e.key === "Enter"){
-      setCount();
+      setInputValue(e.target.value);
     }
   }
 
