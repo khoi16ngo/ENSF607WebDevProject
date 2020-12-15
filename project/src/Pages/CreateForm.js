@@ -51,8 +51,30 @@ export default function CreateForm({ state, setState, setIsSubmitted }) {
                             }
                         />
                 </Form.Group>
+                
                
-                <Form.Group as={Row} controlId="formHorizontalHours">
+                        
+
+                <Form.Group controlId="Form.ControlSelect1">
+                    <Form.Label>Select Course Hours</Form.Label>
+                            <Form.Control as="select"
+                                value={state.hours || ''}
+                                onSelect={(e) => {
+                                    e.preventDefault();
+                                    setState({hours: e.target.value})
+                                }}
+                            >
+                        <option>3</option>
+                        <option>6</option>
+                        <option>9</option>
+                        <option>12</option>
+
+                    </Form.Control>
+                </Form.Group>
+
+
+
+                {/* <Form.Group as={Row} controlId="formHorizontalHours">
                     <Form.Label column sm={2}>
                     Course Hours:
                     </Form.Label>
@@ -68,7 +90,7 @@ export default function CreateForm({ state, setState, setIsSubmitted }) {
                             
                         />
                     </Col>
-                </Form.Group>
+                </Form.Group> */}
 
                 <Form.Group as={Row} controlId="formHorizontalCredit" >
                     <Form.Label column sm={2}>
