@@ -1,7 +1,7 @@
 import React from "react";
 import './MyForm.css';
 
-export default function Form({ state }) {
+export default function Form({ state  }) {
     return (
         <div className='syllabus'>
             <h1 className='title' >Course</h1>
