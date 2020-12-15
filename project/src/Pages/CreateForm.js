@@ -1,4 +1,4 @@
-import { React, useState } from "react";
+import { React, useState, optionState } from "react";
 import 'bootstrap/dist/css/bootstrap.css';
 import { Button, Form, Col, Row } from 'react-bootstrap';
 import useSetState from '../useSetState';
@@ -6,7 +6,7 @@ import './CreateForm.css';
 
 // import { BrowserRouter, Router } from "react-router-dom";
 
-export default function CreateForm({ state, setState, setIsSubmitted }) {
+export default function CreateForm({ state, setState, setIsSubmitted, setIsCreated }) {
 
     
 
@@ -51,8 +51,30 @@ export default function CreateForm({ state, setState, setIsSubmitted }) {
                             }
                         />
                 </Form.Group>
+                
                
-                <Form.Group as={Row} controlId="formHorizontalHours">
+                        
+
+                <Form.Group controlId="Form.ControlSelect1">
+                    <Form.Label>Select Course Hours</Form.Label>
+                            <Form.Control as="select"
+                                value={optionState}
+                                onSelect={(e) => {
+                                    e.preventDefault();
+                                    setState({hours: e.target.value})
+                                }}
+                            >
+                        <option>3</option>
+                        <option>6</option>
+                        <option>9</option>
+                        <option>12</option>
+
+                    </Form.Control>
+                </Form.Group>
+
+
+
+                {/* <Form.Group as={Row} controlId="formHorizontalHours">
                     <Form.Label column sm={2}>
                     Course Hours:
                     </Form.Label>
@@ -68,7 +90,7 @@ export default function CreateForm({ state, setState, setIsSubmitted }) {
                             
                         />
                     </Col>
-                </Form.Group>
+                </Form.Group> */}
 
                 <Form.Group as={Row} controlId="formHorizontalCredit" >
                     <Form.Label column sm={2}>
@@ -116,8 +138,9 @@ export default function CreateForm({ state, setState, setIsSubmitted }) {
                 variant="primary"
                 onClick={(e) => {
                     e.preventDefault();
-                    setIsSubmitted(true)
-                // window.location.href='http://localhost:3001/form';
+                    setIsSubmitted(true);
+                    setIsCreated(false);
+
                 }}
             > Create Course Outline</Button>
             </div>
