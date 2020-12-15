@@ -1,0 +1,17 @@
+.title{
+   display: flex;
+   justify-content: center;
+}
+
+.search{
+    padding-top: 50px;
+    display: flex;
+    justify-content: center;
+}
+
+.createButton{
+    display: flex;
+    justify-content: center;
+    padding-top: 30px;
+}
+

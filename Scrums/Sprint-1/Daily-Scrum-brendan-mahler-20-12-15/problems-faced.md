@@ -1,0 +1,1 @@
+Switching pages in react app

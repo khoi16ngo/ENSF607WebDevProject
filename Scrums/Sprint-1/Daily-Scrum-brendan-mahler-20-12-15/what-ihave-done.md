@@ -1,0 +1,1 @@
+Consult docs to see strategies to make buttons dynamic
