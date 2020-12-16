@@ -34,6 +34,10 @@ function App() {
   // }, [])
 
   return (
+
+
+
+
     <div>
       {isCreated ?
         <CreateForm
@@ -52,8 +56,7 @@ function App() {
     
       {isSubmitted ?
         <MyForm
-          state={state} 
-          
+          state={state}
 
         />
         :
