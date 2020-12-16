@@ -1,0 +1,1 @@
+We have started the project but are struggling with a few react topics such as making the page dynamic and also our styling is quite basic. We talked about how we want it to look and what we will all work on

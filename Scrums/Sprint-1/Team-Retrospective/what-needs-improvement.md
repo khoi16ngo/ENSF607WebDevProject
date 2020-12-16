@@ -1,0 +1,1 @@
+Our team is all new to react. It would be beneficial for all of us to spnd more time learning some of the basics of react.

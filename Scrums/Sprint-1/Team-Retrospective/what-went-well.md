@@ -1,0 +1,1 @@
+We were all able to work together to get a pretty good start on the project. We will continue doing our best to help each other out as this is new for us.
