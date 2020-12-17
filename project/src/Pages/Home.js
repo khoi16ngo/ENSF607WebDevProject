@@ -6,6 +6,8 @@ import LearningTable from './LearningTable.jsx';
 import AttributeTable from './AttributeTable.jsx';
 import GradeTable from './GradeTable.jsx';
 import LetterGradeTable from './LetterGradeTable.jsx';
+import axios from 'axios';
+
 
 export default function Home({ state, setState, setIsCreated }) {
     const [selectedCourse, setSelectedCourse] = useState(null);
@@ -95,6 +97,20 @@ export default function Home({ state, setState, setIsCreated }) {
             setCourseList(courseList.map((element) => (element.courseId === selectedCourse.data.courseId)
                 ? selectedCourse : element));
         }
+
+        axios 
+        .post("http://localhost:8000/wel/", { 
+            courseId: selectedCourse.data.courseId,
+            courseName: selectedCourse.data.courseName,
+            courseDescription: selectedCourse.data.courseDescription,
+            hours: selectedCourse.data.hours,
+            courseCredit: selectedCourse.data.courseCredit,
+            reference: selectedCourse.data.reference,
+            // learningOutcomes: JSON.stringify(selectedCourse.data.learningOutcomes),
+            // gradeComponents: JSON.stringify(selectedCourse.data.gradeComponents),
+            // letterGrades: JSON.stringify(selectedCourse.data.letterGrades),
+        }) 
+
         setSelectedCourse(null);
     }
 
@@ -164,7 +180,7 @@ export default function Home({ state, setState, setIsCreated }) {
         selectedCourse.data.gradeComponents[index] = {...comp};
         setSelectedCourse({...selectedCourse, data: {...selectedCourse.data, gradeComponents: comps}});
     };
-    
+
     return (
         <div>
             <ListGroup>
