@@ -43,11 +43,17 @@ export default function Home({ state, setState, setIsCreated }) {
         ]
     }]);
 
-    // useEffect(() => {
-    //     fetch('path/to/list/api')
-    //         .then((res) => res.json())
-    //         .then((res) => setCourseList(res))
-    // },[])
+    useEffect(() => {
+        axios.get("http://localhost:8000/wel/")
+        .then(res => {
+          const courses = (res.data);
+        setCourseList(courses);
+        console.log(courses);
+        })
+
+    },[])
+
+
 
     useEffect(() => {
         console.log('selected Course', selectedCourse)
