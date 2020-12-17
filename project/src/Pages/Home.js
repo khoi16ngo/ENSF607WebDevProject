@@ -106,9 +106,9 @@ export default function Home({ state, setState, setIsCreated }) {
             hours: selectedCourse.data.hours,
             courseCredit: selectedCourse.data.courseCredit,
             reference: selectedCourse.data.reference,
-            // learningOutcomes: JSON.stringify(selectedCourse.data.learningOutcomes),
-            // gradeComponents: JSON.stringify(selectedCourse.data.gradeComponents),
-            // letterGrades: JSON.stringify(selectedCourse.data.letterGrades),
+            learningOutcomes: JSON.stringify(selectedCourse.data.learningOutcomes),
+            gradeComponents: JSON.stringify(selectedCourse.data.gradeComponents),
+            letterGrades: JSON.stringify(selectedCourse.data.letterGrades),
         }) 
 
         setSelectedCourse(null);
