@@ -12,17 +12,25 @@ class LearningTable extends Component {
                     key = {1}
                     onDelete={onDelete}
                     onSave={onSave}
-                    outcome = {{id:1, value:""}}
+                    outcome = {{id:1, value:"", attribute:"", level: ""}}
                 /> :
                 outcomes.map(o => ( 
-                        <LearningOutcome
-                            key = {o.id}
-                            onDelete={onDelete}
-                            onSave={onSave}
-                            outcome = {o}
-                            
-                        />   
-                    ))
+                    <LearningOutcome
+                        key = {o.id}
+                        onDelete={onDelete}
+                        onSave={onSave}
+                        outcome = {o}            
+                    />   
+                ))
+                }
+                {outcomes.length !== 0 ? 
+                    <LearningOutcome
+                    key = {outcomes.[outcomes.length-1].id + 1}
+                    onDelete={onDelete}
+                    onSave={onSave}
+                    outcome = {{id:outcomes.[outcomes.length-1].id + 1, value:"", attribute:"", level: ""}}
+                    />:
+                    <div></div>
                 }
             </div>
         );

@@ -3,6 +3,7 @@ import 'bootstrap/dist/css/bootstrap.css';
 import { Button, Form, Col, Row, ListGroup, Modal, FormGroup } from 'react-bootstrap';
 import './Home.css'
 import LearningTable from './LearningTable.jsx';
+import AttributeTable from './AttributeTable.jsx';
 import GradeTable from './GradeTable.jsx';
 
 export default function Home({ state, setState, setIsCreated }) {
@@ -15,10 +16,8 @@ export default function Home({ state, setState, setIsCreated }) {
         courseCredit: "3",
         reference: "www.google.ca",
         learningOutcomes: [
-            {id: 1, value: "Have a deep understanding, and practical knowledge of object oriented analysis, design, and development."},
-            {id: 2, value: "Design and develop software programs in Java."},
-            {id: 3, value: "Define the concepts of object-oriented design, such as inheritance and polymorphism."},
-            {id: 4, value: "Design and develop client-server applications."}
+            {id: 1, value: "Have a deep understanding, and practical knowledge of object oriented analysis, design, and development.", attribute: "A3. Investigation", level: "D (Developed)"},
+            {id: 2, value: "Design and develop software programs in Java.", attribute: "A4. Design", level: "A (Applied)"}
         ],
         gradeComponents: [
             {id:1, value: "Assignments",learningOutcomes:"1-7",weight:50},
@@ -81,11 +80,7 @@ export default function Home({ state, setState, setIsCreated }) {
     //----------------------------------------------------------------
     const handleDeleteOutcome = outcomeId => {
         const outcomes = selectedCourse.data.learningOutcomes.filter(o => o.id !== outcomeId);
-        if(outcomes.length === 0){
-            const temp = {id:1, value: ""};
-            outcomes.push(temp);
-        }
-        else{
+        if(outcomes.length !== 0){
             let i = 1;
             outcomes.map(o => o.id = i++);
         }
@@ -94,15 +89,17 @@ export default function Home({ state, setState, setIsCreated }) {
     const handleSaveOutcome = outcome => {
         const outcomes = [...selectedCourse.data.learningOutcomes];
         const index = outcomes.indexOf(outcome);
-        if(index === -1){
+        if(index === -1)
             outcomes.push(outcome);
-            const temp = {id:outcome.id + 1, value: ""};
-            outcomes.push(temp);
-        }
-        if(index === outcomes.length-1){
-            const temp = {id:outcome.id + 1, value: ""};
-            outcomes.push(temp);
-        }
+        else
+            selectedCourse.data.learningOutcomes[index] = {...outcome};
+        setSelectedCourse({...selectedCourse, data: {...selectedCourse.data, learningOutcomes: outcomes}});
+    };
+    const handleSaveAttribute = outcome => {
+        const outcomes = [...selectedCourse.data.learningOutcomes];
+        const index = outcomes.indexOf(outcome);
+        console.log(outcome.attribute);
+        console.log(outcome.level);
         selectedCourse.data.learningOutcomes[index] = {...outcome};
         setSelectedCourse({...selectedCourse, data: {...selectedCourse.data, learningOutcomes: outcomes}});
     };
@@ -154,6 +151,7 @@ export default function Home({ state, setState, setIsCreated }) {
                 show={selectedCourse !== null}
                 onHide={() => setSelectedCourse(null)}
                 backdrop="static"
+                size="xl"
             >
                 <Modal.Header closeButton>
                     <Modal.Title>{selectedCourse &&`${selectedCourse.isNewCourse ? 'Create' : 'Edit' } Course`}</Modal.Title>
@@ -272,6 +270,15 @@ export default function Home({ state, setState, setIsCreated }) {
                                     outcomes = {selectedCourse && selectedCourse.data.learningOutcomes}
                                     onDelete = {handleDeleteOutcome}
                                     onSave = {handleSaveOutcome}
+                                />
+                            }
+                        </FormGroup>
+                        <FormGroup>
+                            {selectedCourse === null ? 
+                                <div></div> : 
+                                <AttributeTable
+                                    outcomes = {selectedCourse && selectedCourse.data.learningOutcomes}
+                                    onSave = {handleSaveAttribute}
                                 />
                             }
                         </FormGroup>

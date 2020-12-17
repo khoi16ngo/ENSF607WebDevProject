@@ -15,7 +15,7 @@ class LearningOutcome extends Component {
                     <Col xs="auto">
                         <Form.Control 
                             type="text" 
-                            defaultValue={outcome.value} 
+                            placeholder={outcome.value} 
                             onChange={(e) => {
                                 e.preventDefault();
                                 outcome.value = e.target.value;
