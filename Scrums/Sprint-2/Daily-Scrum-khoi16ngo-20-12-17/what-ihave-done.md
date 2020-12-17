@@ -1,0 +1,1 @@
+- completed learning outcome partfor front end
