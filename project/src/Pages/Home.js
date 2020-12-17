@@ -2,7 +2,7 @@ import React, {useState, useEffect} from "react";
 import 'bootstrap/dist/css/bootstrap.css';
 import { Button, Form, Col, Row, ListGroup, Modal, FormGroup } from 'react-bootstrap';
 import './Home.css'
-
+import LearningTable from './LearningTable.jsx';
 
 export default function Home({ state, setState, setIsCreated }) {
     const [selectedCourse, setSelectedCourse] = useState(null);
@@ -12,8 +12,13 @@ export default function Home({ state, setState, setIsCreated }) {
         courseDescription: "A course to learn about software design.",
         hours: "6",
         courseCredit: "3",
-        reference: "www.google.ca"
-
+        reference: "www.google.ca",
+        learningOutcomes: [
+            {id: 1, value: "Have a deep understanding, and practical knowledge of object oriented analysis, design, and development."},
+            {id: 2, value: "Design and develop software programs in Java."},
+            {id: 3, value: "Define the concepts of object-oriented design, such as inheritance and polymorphism."},
+            {id: 4, value: "Design and develop client-server applications."}
+        ]
     }]);
 
     // useEffect(() => {
@@ -23,7 +28,6 @@ export default function Home({ state, setState, setIsCreated }) {
     // },[])
 
     useEffect(() => {
-
         console.log('selected Course', selectedCourse)
     }, [selectedCourse])
 
@@ -44,8 +48,8 @@ export default function Home({ state, setState, setIsCreated }) {
         courseDescription: "",
         hours: "",
         courseCredit: "",
-        reference: ""
-
+        reference: "",
+        learningOutcomes: []
     }})
     }
 
@@ -55,7 +59,6 @@ export default function Home({ state, setState, setIsCreated }) {
         } else {
             setCourseList(courseList.map((element) => (element.courseId === selectedCourse.data.courseId)
                 ? selectedCourse : element));
-            
         }
         setSelectedCourse(null);
     }
@@ -66,7 +69,31 @@ export default function Home({ state, setState, setIsCreated }) {
         setSelectedCourse(null);
     }
 
-
+    //----------------------------------------------------------------
+    // FOR LEARNING OUTCOME
+    //----------------------------------------------------------------
+    const handleDeleteOutcome = outcomeId => {
+        const outcomes = selectedCourse.data.learningOutcomes.filter(o => o.id !== outcomeId);
+        if(outcomes.length === 0){
+            const temp = {id:1, value: ""};
+            outcomes.push(temp);
+        }
+        else{
+            const i = 0;
+            outcomes.map(o => o.id = i + 1);
+        }
+        setSelectedCourse({...selectedCourse, data: {...selectedCourse.data, learningOutcomes: outcomes}});
+    };
+    const handleSaveOutcome = outcome => {
+        const outcomes = [...selectedCourse.data.learningOutcomes];
+        const index = outcomes.indexOf(outcome);
+        if(index === outcomes.length-1){
+            const temp = {id:outcome.id + 1, value: ""};
+            outcomes.push(temp);
+        }
+        selectedCourse.data.learningOutcomes[index] = {...outcome};
+        setSelectedCourse({...selectedCourse, data: {...selectedCourse.data, learningOutcomes: outcomes}});
+    };
 
     return (
         <div>
@@ -121,10 +148,6 @@ export default function Home({ state, setState, setIsCreated }) {
                                 />
                         </Form.Group>
 
-                        
-
-
-
                         {/* <FormGroup >
                         {selectedCourse && Object.entries(selectedCourse.data).map(([key, value]) => (
                             <>
@@ -150,6 +173,20 @@ export default function Home({ state, setState, setIsCreated }) {
                         ))}
                         </FormGroup> */}
                         
+                        <FormGroup>
+                            <Form.Label>
+                                Learning Outcomes
+                            </Form.Label>
+                            {selectedCourse === null ? 
+                                <div></div> : 
+                                <LearningTable
+                                    outcomes = {selectedCourse && selectedCourse.data.learningOutcomes}
+                                    onDelete = {handleDeleteOutcome}
+                                    onSave = {handleSaveOutcome}
+                                />
+                            }
+                        </FormGroup>
+
                     </Form>
 
                 </Modal.Body>
