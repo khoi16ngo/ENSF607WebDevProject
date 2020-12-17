@@ -22,6 +22,15 @@ export default function Home({ state, setState, setIsCreated }) {
     //         .then((res) => setCourseList(res))
     // },[])
 
+    useEffect(() => {
+
+        console.log('selected Course', selectedCourse)
+    }, [selectedCourse])
+
+    useEffect(() => {
+        console.log('courseList', courseList)
+    },[courseList])
+
     const handleCourseClick = (e) => {
         console.log(e)
         setSelectedCourse({ data:e, isNewCourse: false })
@@ -52,7 +61,7 @@ export default function Home({ state, setState, setIsCreated }) {
     }
 
     const handleDelete = () => {
-        // delete in backend
+        // Todo: delete in backend
         setCourseList(courseList.filter((element) => element.courseId !== selectedCourse.data.courseId))
         setSelectedCourse(null);
     }
@@ -80,15 +89,55 @@ export default function Home({ state, setState, setIsCreated }) {
                 </Modal.Header>
                 <Modal.Body>
                     <Form>
-                        <FormGroup >
+                       <Form.Group>
+                            <Form.Label>Course ID</Form.Label>
+                            <Form.Control
+                                type="text"
+                                placeholder={selectedCourse && selectedCourse.data.courseId}
+                                    // value = {[selectedCourse.courseId}
+                                onChange={(e) => {
+                                    e.preventDefault();    
+                                     setSelectedCourse({
+                                        isNewCourse: selectedCourse.isNewCourse,
+                                        data: { ...selectedCourse.data, courseId: e.target.value }
+                                    })
+                                }}                         
+                                />
+                        </Form.Group>
+
+                        <Form.Group>
+                            <Form.Label>Course Name</Form.Label>
+                            <Form.Control
+                                type="text"
+                                placeholder={selectedCourse && selectedCourse.data.courseName}
+
+                                onChange={(e) => {
+                                    e.preventDefault();    
+                                    setSelectedCourse({
+                                        isNewCourse: selectedCourse.isNewCourse,
+                                         data: { ...selectedCourse.data, courseName: e.target.value }
+                                    })
+                                }}                         
+                                />
+                        </Form.Group>
+
+                        
+
+
+
+                        {/* <FormGroup >
                         {selectedCourse && Object.entries(selectedCourse.data).map(([key, value]) => (
                             <>
-                                <Form.Label>{key}</Form.Label>
+                            <Form.Label>{key}</Form.Label>
+                           
+                                 
+                           
                             <Form.Control
                                 key={`modal-${key}`}
                                 placeholder={value}
-                                    title={key}
-                                    disabled={!selectedCourse.isNewCourse &&key === 'courseId'}
+                                title={key}
+                                disabled={!selectedCourse.isNewCourse && key === 'courseId'}
+                                    
                                 onChange={(e) => {
                                     setSelectedCourse({
                                         isNewCourse: selectedCourse.isNewCourse,
@@ -99,7 +148,8 @@ export default function Home({ state, setState, setIsCreated }) {
                                 </>
              
                         ))}
-                    </FormGroup>
+                        </FormGroup> */}
+                        
                     </Form>
 
                 </Modal.Body>
