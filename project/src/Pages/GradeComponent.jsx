@@ -15,7 +15,7 @@ class GradeComponent extends Component {
                     <Col xs={4}>
                         <Form.Control 
                             type="text" 
-                            placeHolder="Component"
+                            placeholder="Component"
                             defaultValue={comp.value} 
                             onChange={(e) => {
                                 e.preventDefault();
@@ -27,7 +27,7 @@ class GradeComponent extends Component {
                     <Col xs={2}>
                         <Form.Control 
                             type="text" 
-                            placeHolder="ie.1-7"
+                            placeholder="Learnings"
                             defaultValue={comp.learningOutcomes} 
                             onChange={(e) => {
                                 e.preventDefault();
@@ -39,7 +39,7 @@ class GradeComponent extends Component {
                     <Col xs={2}>
                         <Form.Control 
                             type="text" 
-                            placeHolder="%"
+                            placeholder="Weight"
                             defaultValue={comp.weight} 
                             onChange={(e) => {
                                 e.preventDefault();
