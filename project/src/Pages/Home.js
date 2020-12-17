@@ -3,6 +3,7 @@ import 'bootstrap/dist/css/bootstrap.css';
 import { Button, Form, Col, Row, ListGroup, Modal, FormGroup } from 'react-bootstrap';
 import './Home.css'
 import LearningTable from './LearningTable.jsx';
+import GradeTable from './GradeTable.jsx';
 
 export default function Home({ state, setState, setIsCreated }) {
     const [selectedCourse, setSelectedCourse] = useState(null);
@@ -18,6 +19,11 @@ export default function Home({ state, setState, setIsCreated }) {
             {id: 2, value: "Design and develop software programs in Java."},
             {id: 3, value: "Define the concepts of object-oriented design, such as inheritance and polymorphism."},
             {id: 4, value: "Design and develop client-server applications."}
+        ],
+        gradeComponents: [
+            {id:1, value: "Assignments",learningOutcomes:"1-7",weight:50},
+            {id:2, value: "Project",learningOutcomes:"1-7",weight:25},
+            {id:3, value: "Midterm",learningOutcomes:"1-7",weight:25}
         ]
     }]);
 
@@ -49,7 +55,8 @@ export default function Home({ state, setState, setIsCreated }) {
         hours: "",
         courseCredit: "",
         reference: "",
-        learningOutcomes: []
+        learningOutcomes: [],
+        gradeComponents: []
     }})
     }
 
@@ -100,6 +107,38 @@ export default function Home({ state, setState, setIsCreated }) {
         setSelectedCourse({...selectedCourse, data: {...selectedCourse.data, learningOutcomes: outcomes}});
     };
    
+    //----------------------------------------------------------------
+    // FOR GRADE BREAKDOWN
+    //----------------------------------------------------------------
+    const handleDeleteGrade = compId => {
+        const comps = selectedCourse.data.gradeComponents.filter(o => o.id !== compId);
+        if(comps.length === 0){
+            const temp = {id:1, value: "",learningOutcomes:"",weight:""};
+            comps.push(temp);
+        }
+        else{
+            let i = 1;
+            comps.map(o => o.id = i++);
+        }
+        setSelectedCourse({...selectedCourse, data: {...selectedCourse.data, gradeComponents: comps}});
+    };
+    
+    const handleSaveGrade = comp => {
+        const comps = [...selectedCourse.data.gradeComponents];
+        const index = comps.indexOf(comp);
+        if(index === -1){
+            comps.push(comp);
+            const temp = {id:comp.id + 1, value: "",learningOutcomes:"",weight:""};
+            comps.push(temp);
+        }
+        if(index === comps.length-1){
+            const temp = {id:comp.id + 1, value: "",learningOutcomes:"",weight:""};
+            comps.push(temp);
+        }
+        selectedCourse.data.gradeComponents[index] = {...comp};
+        setSelectedCourse({...selectedCourse, data: {...selectedCourse.data, gradeComponents: comps}});
+    };
+    
     return (
         <div>
             <ListGroup>
@@ -188,6 +227,20 @@ export default function Home({ state, setState, setIsCreated }) {
                                     outcomes = {selectedCourse && selectedCourse.data.learningOutcomes}
                                     onDelete = {handleDeleteOutcome}
                                     onSave = {handleSaveOutcome}
+                                />
+                            }
+                        </FormGroup>
+
+                        <FormGroup>
+                            <Form.Label>
+                                Grade Breakdown
+                            </Form.Label>
+                            {selectedCourse === null ? 
+                                <div></div> : 
+                                <GradeTable
+                                    comps = {selectedCourse && selectedCourse.data.gradeComponents}
+                                    onDelete = {handleDeleteGrade}
+                                    onSave = {handleSaveGrade}
                                 />
                             }
                         </FormGroup>
