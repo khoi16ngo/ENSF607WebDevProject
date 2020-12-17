@@ -5,4 +5,4 @@ class CourseOutlineSerializer(serializers.ModelSerializer):
     class Meta:
         model = CourseOutline
         fields = ('courseId','courseName','courseDescription','hours','courseCredit',
-                    'reference')##,'learningOutcomes','gradeComponents','letterGrades')
+                    'reference','learningOutcomes','gradeComponents','letterGrades')

@@ -13,13 +13,13 @@ class ReactView(APIView):
 	
 	model=CourseOutline
 	fields = ('courseId','courseName','courseDescription','hours','courseCredit',
-                    'reference')##,'learningOutcomes','gradeComponents','letterGrades')
+                    'reference','learningOutcomes','gradeComponents','letterGrades')
 
 
 	def get(self, request): 
 		detail = [ {"courseId": detail.courseId,"courseName": detail.courseName,"courseDescription": detail.courseDescription,
-		"hours":detail.hours,"courseCredit":detail.courseCredit,"reference":detail.reference}##,"learningOutcomes":detail.learningOutcomes,
-		##"gradeComponents":detail.gradeComponents,"letterGrades":detail.letterGrades} 
+		"hours":detail.hours,"courseCredit":detail.courseCredit,"reference":detail.reference,"learningOutcomes":detail.learningOutcomes,
+		"gradeComponents":detail.gradeComponents,"letterGrades":detail.letterGrades} 
 		for detail in CourseOutline.objects.all()] 
 		return Response(detail) 
 
