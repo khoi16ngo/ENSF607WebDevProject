@@ -5,6 +5,7 @@ import './Home.css'
 import LearningTable from './LearningTable.jsx';
 import AttributeTable from './AttributeTable.jsx';
 import GradeTable from './GradeTable.jsx';
+import LetterGradeTable from './LetterGradeTable.jsx';
 
 export default function Home({ state, setState, setIsCreated }) {
     const [selectedCourse, setSelectedCourse] = useState(null);
@@ -23,6 +24,20 @@ export default function Home({ state, setState, setIsCreated }) {
             {id:1, value: "Assignments",learningOutcomes:"1-7",weight:50},
             {id:2, value: "Project",learningOutcomes:"1-7",weight:25},
             {id:3, value: "Midterm",learningOutcomes:"1-7",weight:25}
+        ],
+        letterGrades: [
+            {id:1,letter:"A+", from:"95%",to:"100%"},
+            {id:2,letter:"A", from:"90%",to:"95%"},
+            {id:3,letter:"A-", from:"85%",to:"90%"},
+            {id:4,letter:"B+", from:"80%",to:"85%"},
+            {id:5,letter:"B", from:"75%",to:"80%"},
+            {id:6,letter:"B-", from:"70%",to:"75%"},
+            {id:7,letter:"C+", from:"65%",to:"70%"},
+            {id:8,letter:"C", from:"60%",to:"65%"},
+            {id:9,letter:"C-", from:"56%",to:"60%"},
+            {id:10,letter:"D+", from:"53%",to:"56%"},
+            {id:11,letter:"D", from:"50%",to:"53%"},
+            {id:12,letter:"F", from:"0%",to:"50%"}
         ]
     }]);
 
@@ -55,7 +70,21 @@ export default function Home({ state, setState, setIsCreated }) {
         courseCredit: "",
         reference: "",
         learningOutcomes: [],
-        gradeComponents: []
+        gradeComponents: [],
+        letterGrades: [
+            {id:1,letter:"A+", from:"95%",to:"100%"},
+            {id:2,letter:"A", from:"90%",to:"95%"},
+            {id:3,letter:"A-", from:"85%",to:"90%"},
+            {id:4,letter:"B+", from:"80%",to:"85%"},
+            {id:5,letter:"B", from:"75%",to:"80%"},
+            {id:6,letter:"B-", from:"70%",to:"75%"},
+            {id:7,letter:"C+", from:"65%",to:"70%"},
+            {id:8,letter:"C", from:"60%",to:"65%"},
+            {id:9,letter:"C-", from:"56%",to:"60%"},
+            {id:10,letter:"D+", from:"53%",to:"56%"},
+            {id:11,letter:"D", from:"50%",to:"53%"},
+            {id:12,letter:"F", from:"0%",to:"50%"}
+        ]
     }})
     }
 
@@ -190,7 +219,6 @@ export default function Home({ state, setState, setIsCreated }) {
                                 />
                         </Form.Group>
 
-
                         <Form.Group>
                             <Form.Label>Course Description</Form.Label>
                             <Form.Control as="textarea" rows={3}
@@ -293,6 +321,18 @@ export default function Home({ state, setState, setIsCreated }) {
                                     comps = {selectedCourse && selectedCourse.data.gradeComponents}
                                     onDelete = {handleDeleteGrade}
                                     onSave = {handleSaveGrade}
+                                />
+                            }
+                        </FormGroup>
+
+                        <FormGroup>
+                            <Form.Label>
+                                Letter Grades
+                            </Form.Label>
+                            {selectedCourse === null ? 
+                                <div></div> : 
+                                <LetterGradeTable
+                                    grades = {selectedCourse && selectedCourse.data.letterGrades}
                                 />
                             }
                         </FormGroup>
