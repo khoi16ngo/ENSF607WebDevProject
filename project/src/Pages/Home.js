@@ -186,36 +186,81 @@ export default function Home({ state, setState, setIsCreated }) {
                                     e.preventDefault();    
                                     setSelectedCourse({
                                         isNewCourse: selectedCourse.isNewCourse,
-                                         data: { ...selectedCourse.data, courseName: e.target.value }
+                                        data: { ...selectedCourse.data, courseName: e.target.value }
                                     })
                                 }}                         
                                 />
                         </Form.Group>
 
-                        {/* <FormGroup >
-                        {selectedCourse && Object.entries(selectedCourse.data).map(([key, value]) => (
-                            <>
-                            <Form.Label>{key}</Form.Label>
-                           
-                                 
-                           
-                            <Form.Control
-                                key={`modal-${key}`}
-                                placeholder={value}
-                                title={key}
-                                disabled={!selectedCourse.isNewCourse && key === 'courseId'}
-                                    
+
+                        <Form.Group>
+                            <Form.Label>Course Description</Form.Label>
+                            <Form.Control as="textarea" rows={3}
+                                placeholder={selectedCourse && selectedCourse.data.courseDescription}
                                 onChange={(e) => {
+                                    e.preventDefault();    
                                     setSelectedCourse({
                                         isNewCourse: selectedCourse.isNewCourse,
-                                        data: { ...selectedCourse.data, [key]: e.target.value }
+                                        data: { ...selectedCourse.data, courseDescription: e.target.value }
                                     })
-                                }}
+                                }}         
                                 />
-                                </>
-             
-                        ))}
-                        </FormGroup> */}
+                        </Form.Group>
+
+                        <Form.Group controlId="Form.ControlSelect1">
+                            <Form.Label>Select Course Hours</Form.Label>
+                            <Form.Control as="select" 
+                                placeholder = "select"
+                                    onChange={(e) => {
+                                    e.preventDefault();    
+                                    setSelectedCourse({
+                                        isNewCourse: selectedCourse.isNewCourse,
+                                        data: { ...selectedCourse.data, hours: e.currentTarget.value }
+                                    })
+                                }}         
+                            >
+                                <option>{selectedCourse && selectedCourse.data.hours}</option>
+                                <option>3</option>
+                                <option>6</option>
+                                <option>9</option>
+                                <option>12</option>
+                            </Form.Control>
+                        </Form.Group>
+
+                        <Form.Group controlId="Form.ControlSelect1">
+                            <Form.Label>Select Course Credits</Form.Label>
+                            <Form.Control as="select" 
+                                    placeholder = {selectedCourse && selectedCourse.data.courseCredit}
+                                    onChange={(e) => {
+                                    e.preventDefault();    
+                                    setSelectedCourse({
+                                        isNewCourse: selectedCourse.isNewCourse,
+                                        data: { ...selectedCourse.data, courseCredit: e.currentTarget.value }
+                                    })
+                                }}         
+                            >
+                                <option>{selectedCourse && selectedCourse.data.courseCredit}</option>
+                                <option>3</option>
+                                <option>6</option>
+                            </Form.Control>
+                        </Form.Group>
+
+                       <Form.Group>
+                            <Form.Label>Course Reference</Form.Label>
+                            <Form.Control
+                                type="text"
+                                placeholder={selectedCourse && selectedCourse.data.reference}
+
+                                onChange={(e) => {
+                                    e.preventDefault();    
+                                    setSelectedCourse({
+                                        isNewCourse: selectedCourse.isNewCourse,
+                                        data: { ...selectedCourse.data, reference: e.target.value }
+                                    })
+                                }}                         
+                                />
+                        </Form.Group>
+
                         
                         <FormGroup>
                             <Form.Label>
@@ -249,11 +294,11 @@ export default function Home({ state, setState, setIsCreated }) {
 
                 </Modal.Body>
                 <Modal.Footer>
-                    <Button variant="secondary" onClick={handleSave}>
+                    <Button variant="success" onClick={handleSave}>
                         Save
                     </Button>
                     {selectedCourse && !selectedCourse.isNewCourse ?
-                        <Button variant="primary" onClick={handleDelete}>Delete</Button>
+                        <Button variant="danger" onClick={handleDelete}>Delete</Button>
                         : null
                     }
                 </Modal.Footer>
