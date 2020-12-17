@@ -15,11 +15,10 @@ class LearningOutcome extends Component {
                     <Col xs="auto">
                         <Form.Control 
                             type="text" 
-                            value={outcome.value} 
+                            defaultValue={outcome.value} 
                             onChange={(e) => {
                                 e.preventDefault();
                                 outcome.value = e.target.value;
-                                onSave(outcome);
                             }}
                         >
                         </Form.Control>
@@ -30,7 +29,6 @@ class LearningOutcome extends Component {
                                 e.preventDefault(); 
                                 onSave(outcome);
                             }}
-                            disabled={outcome.value === "" ? true : false}
                             className="btn btn-success btn-sm"
                         >
                             Save

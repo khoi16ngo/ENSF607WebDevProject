@@ -9,17 +9,18 @@ class LearningTable extends Component {
             <div>
                 {outcomes.length === 0 ?  
                 <LearningOutcome
+                    key = {1}
                     onDelete={onDelete}
                     onSave={onSave}
                     outcome = {{id:1, value:""}}
-                    key = {1}
                 /> :
                 outcomes.map(o => ( 
                         <LearningOutcome
+                            key = {o.id}
                             onDelete={onDelete}
                             onSave={onSave}
                             outcome = {o}
-                            key = {o.id}
+                            
                         />   
                     ))
                 }

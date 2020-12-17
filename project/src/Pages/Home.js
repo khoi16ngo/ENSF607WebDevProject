@@ -79,14 +79,19 @@ export default function Home({ state, setState, setIsCreated }) {
             outcomes.push(temp);
         }
         else{
-            const i = 0;
-            outcomes.map(o => o.id = i + 1);
+            let i = 1;
+            outcomes.map(o => o.id = i++);
         }
         setSelectedCourse({...selectedCourse, data: {...selectedCourse.data, learningOutcomes: outcomes}});
     };
     const handleSaveOutcome = outcome => {
         const outcomes = [...selectedCourse.data.learningOutcomes];
         const index = outcomes.indexOf(outcome);
+        if(index === -1){
+            outcomes.push(outcome);
+            const temp = {id:outcome.id + 1, value: ""};
+            outcomes.push(temp);
+        }
         if(index === outcomes.length-1){
             const temp = {id:outcome.id + 1, value: ""};
             outcomes.push(temp);
@@ -94,7 +99,7 @@ export default function Home({ state, setState, setIsCreated }) {
         selectedCourse.data.learningOutcomes[index] = {...outcome};
         setSelectedCourse({...selectedCourse, data: {...selectedCourse.data, learningOutcomes: outcomes}});
     };
-
+   
     return (
         <div>
             <ListGroup>
