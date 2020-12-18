@@ -1,0 +1,1 @@
+- problems with selectedCourse states being null

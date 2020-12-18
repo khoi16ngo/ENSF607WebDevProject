@@ -1,0 +1,2 @@
+- finished project
+- modal makes it easy for viewing courses
