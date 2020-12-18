@@ -54,7 +54,6 @@ export default function Home({ state, setState, setIsCreated }) {
     },[])
 
 
-
     useEffect(() => {
         console.log('selected Course', selectedCourse)
     }, [selectedCourse])
@@ -65,7 +64,22 @@ export default function Home({ state, setState, setIsCreated }) {
 
     const handleCourseClick = (e) => {
         console.log(e)
-        setSelectedCourse({ data:e, isNewCourse: false })
+        // setSelectedCourse({ data:e, isNewCourse: false })
+
+        setSelectedCourse({isNewCourse : false, data:{
+            courseId: e.courseId,
+            courseName: e.courseName,
+            courseDescription: e.courseDescription,
+            hours: e.hours,
+            courseCredit: e.courseCredit,
+            reference: e.reference,
+            learningOutcomes: JSON.parse(e.learningOutcomes),
+            gradeComponents: JSON.parse(e.gradeComponents),
+            letterGrades: JSON.parse(e.letterGrades)
+        }})
+
+        console.log(selectedCourse)
+        console.log(e.learningOutcomes)
     }
 
      const createCourseClick = (e) => {
@@ -118,12 +132,16 @@ export default function Home({ state, setState, setIsCreated }) {
         }) 
 
         setSelectedCourse(null);
+
+        window.location.reload();
     }
 
     const handleDelete = () => {
         // Todo: delete in backend
         setCourseList(courseList.filter((element) => element.courseId !== selectedCourse.data.courseId))
         setSelectedCourse(null);
+
+        window.location.reload();
     }
 
     //----------------------------------------------------------------
@@ -372,7 +390,8 @@ export default function Home({ state, setState, setIsCreated }) {
                     }
                 </Modal.Footer>
             </Modal>
-            <h1 className='title'>Hello on the main page</h1>
+            <br/>
+            <h1 className='title'>Welcome to Course Outline Builder</h1>
 
                 
             
